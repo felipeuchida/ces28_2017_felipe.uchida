@@ -1,3 +1,1 @@
-Reposit√≥rio onde os arquivos dos labs ser√£o postados.
-
-Trabalhos em dupla com Dennys Rocha: https://github.com/dennysrocha/ces28_2017_dennys.rocha
+RepositÛrio onde os arquivos dos labs ser„o postados.
