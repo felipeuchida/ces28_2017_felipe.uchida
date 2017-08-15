@@ -31,7 +31,7 @@ public class MoneyBag {
 		if(!already_exists)
 			_monies.add(m); 
 	}
-	
+
 	public boolean equals(Object anObject) {
 		if (this == anObject) // checks if they are the same pointer!
 			return true; 
@@ -47,5 +47,15 @@ public class MoneyBag {
 				return false;
 		}//for
 		return true;
+	}
+
+	public String[] showBag(){
+		int n = _monies.size();
+		String[] vetorCurrencies = new String[n];
+		for(int i=0; i < n; i++){
+			vetorCurrencies[i] = _monies.get(i).getCurrency();
+			System.out.println( vetorCurrencies[i] );
+		}
+		return vetorCurrencies;
 	}
 }
