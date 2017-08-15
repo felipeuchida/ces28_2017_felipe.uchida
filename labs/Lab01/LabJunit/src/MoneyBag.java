@@ -41,7 +41,8 @@ public class MoneyBag {
 		if (!(otherlist.size() == this.size()))
 			return false;
 		// loop over each element of otherlist
-		for (int i=0; i < otherlist.size() ; i++) {
+		int n = otherlist.size();
+		for (int i=0; i < n ; i++) {
 			if (!contains(otherlist.get(i)))
 				return false;
 		}//for

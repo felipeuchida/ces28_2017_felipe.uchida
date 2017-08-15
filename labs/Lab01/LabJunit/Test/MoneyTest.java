@@ -57,7 +57,7 @@ public class MoneyTest {
 	}
 	
 	@Test
-	// Teste com base em assertEquals (Processo 08)
+	// Teste para o método add do MoneyBag (Processo 08)
 	public void WhenListsHaveSameElementsThenListsAreEqual() {
 		// Mesma ordem de elementos
 		MoneyBag actual = new MoneyBag();
@@ -72,5 +72,31 @@ public class MoneyTest {
 		actual2.add(new Money(10,"BRL"));
 		actual2.add(new Money( 5,"CHF"));
 		assertEquals(ml,actual2);
+	}
+	
+	@Test
+	// Teste para o método size do MoneyBag (Processo 08)
+	public void WhenListsHaveSameNumberOfElementsThenReturnOk() {
+		assertEquals(ml.size(),3);
+		
+		MoneyBag actual2 = new MoneyBag();
+		actual2.add(new Money(15,"USD"));
+		actual2.add(new Money(10,"BRL"));
+		actual2.add(new Money( 5,"CHF"));
+		actual2.add(new Money( 5,"XX1"));
+		actual2.add(new Money( 5,"XX2"));
+		assertEquals(actual2.size(), 5);
+	}
+	
+	@Test
+	// Teste para o método contains do MoneyBag (Processo 08)
+	public void WhenListContainElementThenReturnOk() {
+		assertTrue(ml.contains(BRL10));
+		assertTrue(ml.contains(CHF05));
+		assertTrue(ml.contains(USD15));
+		
+		Money XXX = new Money(5,"XXX");
+		ml.add(XXX);
+		assertTrue(ml.contains(XXX));
 	}
 }
