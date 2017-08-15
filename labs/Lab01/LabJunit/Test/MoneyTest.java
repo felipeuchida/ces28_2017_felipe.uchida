@@ -45,6 +45,8 @@ public class MoneyTest {
 		assertTrue(ml.contains(EUR30));
 	}
 
+	/*
+	// Teste feito antes do processo 10
 	@Test
 	// Teste com base em assertEquals (Processo 03)
 	public void WhenMoneyAreAddedWIthSameCurrencyThenMoneyAmountAddedUp() {
@@ -54,7 +56,7 @@ public class MoneyTest {
 		assertEquals(BRL.getAmount(),20);
 		Money BRL20 = new Money(20,"BRL");
 		assertEquals(BRL,BRL20);
-	}
+	}*/
 
 	@Test
 	// Teste para o método add do MoneyBag (Processo 08)
@@ -109,5 +111,34 @@ public class MoneyTest {
 		Money XXX = new Money(5,"XXX");
 		ml.add(XXX);
 		assertEquals(mlCurrencies2,ml.showBag());
+	}
+	
+	@Test
+	// Teste para o método add do Money (Processo 10)
+	public void WhenMoneyAreAddedWIthSameCurrencyThenReturnTypeMoneyElseReturnTypeMoneybag() {
+		Money BRL = new Money(5,"BRL");
+		Money BRL15 = new Money(15,"BRL");
+		assertTrue(BRL.add(BRL15) instanceof Money);
+		assertEquals(BRL.getAmount(),20);
+		Money BRL20 = new Money(20,"BRL");
+		assertEquals(BRL,BRL20);
+		assertTrue(BRL.add(CHF05) instanceof MoneyBag);
+	}
+	
+	@Test
+	// Testando para o método convertToBRL do MoneyBag (Processo 11)
+	public void WhenWeHaveMoneyThenWeConvertItToBRL(){
+		CHF05.setConversionToBRL(2);
+		USD15.setConversionToBRL(3);
+		assertEquals(BRL10.getAmount()*1 + CHF05.getAmount()*2 + USD15.getAmount()*3, ml.converToBRL().getAmount());
+		
+		CHF05.setConversionToBRL(30);
+		USD15.setConversionToBRL(40);
+		assertEquals(BRL10.getAmount()*1 + CHF05.getAmount()*30 + USD15.getAmount()*40, ml.converToBRL().getAmount());
+		
+		
+		CHF05.setConversionToBRL(13);
+		USD15.setConversionToBRL(94);
+		assertEquals(BRL10.getAmount()*1 + CHF05.getAmount()*13 + USD15.getAmount()*94, ml.converToBRL().getAmount());
 	}
 }

@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.List;
 
-public class MoneyBag {
+public class MoneyBag implements MoneyInterface{
 	private List<Money> _monies = new LinkedList<Money>( );
 
 	public int size() { 
@@ -16,20 +16,21 @@ public class MoneyBag {
 		return _monies.get(i); 
 	}
 
-	public void add(Money m) { 
+	public MoneyInterface add(Money money) { 
 		// loop sobre cada elemento e verifica se já existe aquela currency
 		int n = 0;
 		boolean already_exists = false;
 		n = _monies.size();
 		for (int i=0; i < n; i++) {
-			if (_monies.get(i).getCurrency().equals(m.getCurrency())){
+			if (_monies.get(i).getCurrency().equals(money.getCurrency())){
 				already_exists = true;
-				_monies.get(i).setAmount(_monies.get(i).getAmount() + m.getAmount());
+				_monies.get(i).setAmount(_monies.get(i).getAmount() + money.getAmount());
 				break;
 			}
 		}
 		if(!already_exists)
-			_monies.add(m); 
+			_monies.add(money); 
+		return this;
 	}
 
 	public boolean equals(Object anObject) {
@@ -57,5 +58,22 @@ public class MoneyBag {
 			System.out.println( vetorCurrencies[i] );
 		}
 		return vetorCurrencies;
+	}
+	
+	public Money converToBRL(){
+		int n = _monies.size();
+		int k = 0;
+		Money totalBRL = new Money(0,"BRL"); 
+		for (int i=0; i < n; i++){
+			if(!_monies.get(i).getCurrency().equals("BRL")){
+				k = _monies.get(i).getConversionToBRL();
+			}
+			else{
+				k = 1;
+			}
+			Money aux = new Money(k*_monies.get(i).getAmount(),"BRL");
+			totalBRL.add(aux);
+		}
+		return totalBRL;
 	}
 }
