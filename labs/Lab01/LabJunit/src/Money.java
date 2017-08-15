@@ -1,10 +1,11 @@
 public class Money {
 	private int _amount;
-	private String _currency;
+	private Currency _currency;
 	
 	public Money(int amount, String currency) {
 		setAmount(amount);
-		setCurrency(currency);
+		// injeção de dependência do tipo construtor
+		_currency = new Currency(currency);
 	}
 	
 	public void setAmount(int amount) {
@@ -12,7 +13,7 @@ public class Money {
 	}
 	
 	public void setCurrency(String currency) {
-		this._currency = currency;
+		_currency.setCurrency(currency);
 	}
 	
 	public int getAmount() {
@@ -20,7 +21,7 @@ public class Money {
 	}
 
 	public String getCurrency() {
-		return _currency;
+		return _currency.getCurrency();
 	}
 	
 	// Compara objetos money, se amount e currency forem iguais, então os objetos são iguais
