@@ -22,6 +22,7 @@ public class MoneyTest {
 	}
 	
 	@Test
+	// Teste com base em assertTrue (Processo 02)
 	public void WhenMoneyAreAddedWIthSameCurrencyThenMoneyAmountAddedUp() {
 		assertTrue(ml.contains(BRL10));
 		assertTrue(ml.contains(CHF05));
@@ -42,5 +43,23 @@ public class MoneyTest {
 		Money EUR30 = new Money(30,"EUR");
 		ml.add(EUR30);
 		assertTrue(ml.contains(EUR30));
+	}
+	
+	@Test
+	// Teste com base em assertEquals (Processo 03)
+	public void WhenListsHaveSameElementsThenListsAreEqual() {
+		// Mesma ordem de elementos
+		MoneyList actual = new MoneyList();
+		actual.add(new Money(10,"BRL"));
+		actual.add(new Money( 5,"CHF"));
+		actual.add(new Money(15,"USD"));
+		assertEquals(ml,actual);
+		
+		// Ordem diferente de elementos
+		MoneyList actual2 = new MoneyList();
+		actual2.add(new Money(15,"USD"));
+		actual2.add(new Money(10,"BRL"));
+		actual2.add(new Money( 5,"CHF"));
+		assertEquals(ml,actual2);
 	}
 }
