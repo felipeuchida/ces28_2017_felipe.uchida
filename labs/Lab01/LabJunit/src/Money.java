@@ -32,4 +32,8 @@ public class Money {
 		}
 		return false;
 	}
+	
+	public void add(Money m) { 
+		setAmount(m.getAmount() + this.getAmount());
+	}
 }

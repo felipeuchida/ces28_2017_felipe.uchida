@@ -5,14 +5,14 @@ import org.junit.Before;
 import org.junit.Test;
 
 public class MoneyTest {
-	private  MoneyList ml;
+	private  MoneyBag ml;
 	private Money BRL10;
 	private Money CHF05;
 	private Money USD15;
 	
 	@Before
 	public void setUp() throws Exception {
-		ml = new MoneyList();
+		ml = new MoneyBag();
 		BRL10 = new Money(10,"BRL");
 		CHF05 = new Money( 5,"CHF");
 		USD15 = new Money(15,"USD");
@@ -23,7 +23,7 @@ public class MoneyTest {
 	
 	@Test
 	// Teste com base em assertTrue (Processo 02)
-	public void WhenMoneyAreAddedWIthSameCurrencyThenMoneyAmountAddedUp() {
+	public void WhenMoneyAreAddedWIthSameCurrencyInMonaybagThenMoneyAmountAddedUp() {
 		assertTrue(ml.contains(BRL10));
 		assertTrue(ml.contains(CHF05));
 		assertTrue(ml.contains(USD15));
@@ -47,16 +47,27 @@ public class MoneyTest {
 	
 	@Test
 	// Teste com base em assertEquals (Processo 03)
+	public void WhenMoneyAreAddedWIthSameCurrencyThenMoneyAmountAddedUp() {
+		Money BRL = new Money(5,"BRL");
+		Money BRL15 = new Money(15,"BRL");
+		BRL.add(BRL15);
+		assertEquals(BRL.getAmount(),20);
+		Money BRL20 = new Money(20,"BRL");
+		assertEquals(BRL,BRL20);
+	}
+	
+	@Test
+	// Teste com base em assertEquals (Processo 08)
 	public void WhenListsHaveSameElementsThenListsAreEqual() {
 		// Mesma ordem de elementos
-		MoneyList actual = new MoneyList();
+		MoneyBag actual = new MoneyBag();
 		actual.add(new Money(10,"BRL"));
 		actual.add(new Money( 5,"CHF"));
 		actual.add(new Money(15,"USD"));
 		assertEquals(ml,actual);
 		
 		// Ordem diferente de elementos
-		MoneyList actual2 = new MoneyList();
+		MoneyBag actual2 = new MoneyBag();
 		actual2.add(new Money(15,"USD"));
 		actual2.add(new Money(10,"BRL"));
 		actual2.add(new Money( 5,"CHF"));
