@@ -5,7 +5,7 @@ public class CalculadoraString {
 	// Verifica se caracter é "," ou " "
 	static boolean verificaSeparador(char c) {
 		boolean separador = false;
-		if(c == ','  || c == ' ')
+		if(c == ','  || c == ' ' || c == '\n')
 			separador = true;
 		return separador;
 	}
