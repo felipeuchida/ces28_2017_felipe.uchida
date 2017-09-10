@@ -1,21 +1,29 @@
 import java.lang.Character;
 
 public class CalculadoraString {
-	
+	static char delimitadorAdicional;
+
 	// Verifica se caracter é "," ou " "
 	static boolean verificaSeparador(char c) {
 		boolean separador = false;
-		if(c == ','  || c == ' ' || c == '\n')
+		if(c == ','  || c == ' ' || c == '\n' || c == delimitadorAdicional)
 			separador = true;
 		return separador;
 	}
 
 	// Função principal
 	static int add(String numbers) {
+		int n = numbers.length();
 		if(numbers.equals(""))
 			return 0;
-		//System.out.println("add  " + numbers);
-		//System.out.println(q0(numbers, 0));
+		delimitadorAdicional = ' ';
+		if(n >= 5){
+			if(numbers.substring(0,3).equals("//[") && numbers.charAt(4) == ']'){
+				delimitadorAdicional = numbers.charAt(3);
+				return q0(numbers.substring(5,n), 0);
+			}else
+				return q0(numbers, 0);
+		}
 		return q0(numbers, 0);
 	}
 
@@ -23,7 +31,7 @@ public class CalculadoraString {
 	static int q0(String numbers, int total) {
 		//System.out.println("q0  " + numbers + "  total = " + total);
 		int n = numbers.length();
-		
+
 		if(numbers.equals(""))
 			return total;
 		else if(verificaSeparador(numbers.charAt(0)))
