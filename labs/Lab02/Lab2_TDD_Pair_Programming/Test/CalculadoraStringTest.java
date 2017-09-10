@@ -1,9 +1,11 @@
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import org.junit.Rule;
+import org.junit.rules.ExpectedException;
 
 public class CalculadoraStringTest {
-
+/*
 	@Test
 	// Teste para a tarefa 1
 	public void WhenEmptyThenReturnsZero() {
@@ -47,5 +49,24 @@ public class CalculadoraStringTest {
 		assertEquals(CalculadoraString.add("//[;]\n ,,,; "),0);
 		assertEquals(CalculadoraString.add("//[;]\n1;2"),3);
 		assertEquals(CalculadoraString.add("//[;]\n1;2,3\n4"),10);
+	}
+	*/
+	@Rule
+	public ExpectedException expectedException = ExpectedException.none();
+	
+	@Test
+	// Teste para a tarefa 5
+	public void WhenNegativeNumbersThenReturnsException() {
+		expectedException.expect(IllegalArgumentException.class);
+		expectedException.expectMessage("negativos proibidos [-1445 -31 -3]");
+		CalculadoraString.add("-1445 448,,,,, -31 555555 -3");
+	}
+	
+	@Test
+	// Teste para a tarefa 5
+	public void WhenNegativeNumbersBegginingWithZeroThenReturnsException() {
+		expectedException.expect(IllegalArgumentException.class);
+		expectedException.expectMessage("negativos proibidos [-1445 -3166 -3]");
+		CalculadoraString.add("-00001445 448,,,,, -003166 555555 -03");
 	}
 }
