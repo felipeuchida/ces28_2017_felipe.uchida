@@ -5,6 +5,9 @@ import org.junit.Rule;
 import org.junit.rules.ExpectedException;
 
 public class CalculadoraStringTest {
+	@Rule
+	public ExpectedException expectedException = ExpectedException.none();
+	
 	@Test
 	// Teste para a tarefa 1
 	public void WhenEmptyThenReturnsZero() {
@@ -49,9 +52,6 @@ public class CalculadoraStringTest {
 		assertEquals(CalculadoraString.add("//[;]\n1;2"),3);
 		assertEquals(CalculadoraString.add("//[;]\n1;2,3\n4"),10);
 	}
-	
-	@Rule
-	public ExpectedException expectedException = ExpectedException.none();
 	
 	@Test
 	// Teste para a tarefa 5
@@ -154,18 +154,18 @@ public class CalculadoraStringTest {
 		assertEquals(CalculadoraString.add("//[-]\n -1--2- -3- \n-4-,-5"),15);
 	}
 	
-	//@Test
+	@Test
 	// Teste para o FAQ e Casos Especiais 6
 	/*" -0 -1001 -2 -2" retorno uma excecao com a mensagem "negativos proibidos [-2]" ou "negativos proibidos [ -0 -2 -1001]" 
 	 * ou "negativos proibidos [-2 -1001]" ou "negativos proibidos [-1001 -2]" ou "negativos proibidos [-0 -1001 -2 -2]" ou uma outra forma?*/
-	/*public void WhenNumberIsSmallerThenMinus1000ThenAlsoHasPartOnTheException() {
+	public void WhenNumberIsSmallerThenMinus1000ThenAlsoHasPartOnTheException() {
 		expectedException.expect(IllegalArgumentException.class);
-		expectedException.expectMessage("negativos proibidos [-1445 -3166 -3]");
+		expectedException.expectMessage("negativos proibidos [-1001 -2 -2]");
 		CalculadoraString.add(" -0 -1001 -2 -2");
-	}*/
+	}
 	
 	@Test
-	// Teste para a tarefa 7
+	// Teste para o FAQ e Casos Especiais 7
 	// Se vier "-0", devo retornar 0 ou mando uma exceção com a mensagem "negativos proibidos [-0]"
 	public void WhenMinusZeroThenEqualsZero() {
 		assertEquals(CalculadoraString.add("-0"),0);
